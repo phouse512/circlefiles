@@ -17,20 +17,11 @@ Plugin 'scrooloose/nerdcommenter'
 " Creates the status bar at the bottom
 Plugin 'bling/vim-airline'
 
-" Check for syntax problems
-Plugin 'scrooloose/syntastic'
-
 " git integration
 Plugin 'tpope/vim-fugitive'
 
 " all of the colors
 Plugin 'flazz/vim-colorschemes'
-
-" Better json
-Plugin 'elzr/vim-json'
-
-" for ruby
-Plugin 'vim-ruby/vim-ruby'
 
 " better identify indents so they can be highlited
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -42,14 +33,6 @@ Plugin 'plasticboy/vim-markdown'
 " tab complete
 Plugin 'ervandew/supertab'
 
-"python debuger
-"Plugin 'jaredly/vim-debug' install this through pip
-
-"see where you are jumping too
-Plugin 'Lokaltog/vim-easymotion'
-
-Plugin 'motus/pig.vim'
-
 "set up Goyo for minimalist typing
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
@@ -58,16 +41,11 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 filetype plugin on
 
-set history=50
-set autoindent  " Keeps the indent when you hit return
-
-
-
 " PHIL's SETTINGS
+set number      " Show the line numbers
 set hlsearch    " highlight the word you are searching
 set encoding=utf-8
-syntax on       " Turn on syntax colors
-set number      " Show the line numbers
+syntax on     " Turn on syntax colors
 set visualbell  " Flash the screen instead of making a sound
 set list " Show spaces
 set mouse=a     " Enable the use of the mouse in all modes
@@ -76,7 +54,6 @@ let mapleader = "," " Change leader key to ,
 set tabstop=4 shiftwidth=4 expandtab " All tabs are spaces
 set scrolloff=5 " the minimum # of lines above/below the cursor
 set showmode
-set showcmd
 set wildmenu
 set wildmode=list:longest
 set cursorline  " Highlight the line the cursor is on
@@ -104,8 +81,7 @@ hi CursorLine   cterm=NONE ctermbg=235
 " airline {
     let g:airline_theme='molokai'
     if !exists('g:airline_powerline_fonts')
-e       " Use the default set of separators with a few customizations
-"set nowrap      " Do not word wrap
+       " Use the default set of separators with a few customizations
         let g:airline_left_sep='›'  " Slightly fancier than '>'
         let g:airline_right_sep='‹' " Slightly fancier than '<'
     endif
@@ -132,6 +108,7 @@ e       " Use the default set of separators with a few customizations
     if isdirectory(expand("~/.vim/bundle/vim-fugitive/"))
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
+
         nnoremap <silent> <leader>gc :Gcommit<CR>
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
@@ -186,7 +163,6 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
-
-" fold tag
-nnoremap <leader>ft Vatzf
-
+set nofoldenable
+inoremap jj <ESC>
+nnoremap <silent><leader>rd :.-1r! echo $RANDOM<CR>
