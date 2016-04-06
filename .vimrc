@@ -166,3 +166,5 @@ nnoremap k gk
 set nofoldenable
 inoremap jj <ESC>
 nnoremap <silent><leader>rd :.-1r! echo $RANDOM<CR>
+
+let @n = ',rd-ji- [ ] jj$a:€kb€kbjj,rdi    - [ ] jj$a:€kb€kb€kb€kb€kb€kbjj,rdi    - [ ] jj$a:€kb€kb€kb€kb€kb€kbjj,rdi    - [ ] jj$a:€kb€kb€kb€kb€kb€kbjj,rdi    - [ ] jj$a:€kb€kb€kb€kb€kb€kbjj,rd-jhhhhi    - [ ] jj$a:€kb€kb€kb€kb€kb€kbjj'
