@@ -6,103 +6,93 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
-" File viewer
-Plugin 'scrooloose/nerdtree'
+" install NerdTree 
+Plugin 'scrooloose/nerdTree'
 
-" Used for comments
-Plugin 'scrooloose/nerdcommenter'
+" vim markdown with tabular dependency
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
-" Creates the status bar at the bottom
-Plugin 'bling/vim-airline'
+" install colorschemes
+Plugin 'flazz/vim-colorschemes'
 
 " git integration
 Plugin 'tpope/vim-fugitive'
 
-" all of the colors
-Plugin 'flazz/vim-colorschemes'
-
-" better identify indents so they can be highlited
-Plugin 'nathanaelkane/vim-indent-guides'
-
-" line up blocks of text
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-
-" tab complete
-Plugin 'ervandew/supertab'
-
-"set up Goyo for minimalist typing
+" junegunn minimalist writing screen
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
+
+" golang plugin
+Plugin 'fatih/vim-go'
+
+" solidity plugin
+Plugin 'tomlion/vim-solidity'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-filetype plugin on
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
-" PHIL's SETTINGS
-set number      " Show the line numbers
-set hlsearch    " highlight the word you are searching
+set mouse=a
+set t_Co=256
+colorscheme gardener
+syntax on
+
+let mapleader = "," " change leader key to ,
+set listchars=tab:â€º\ ,trail:â€¢,extends:#,nbsp:. " highlight whitespace
+set visualbell
 set encoding=utf-8
-syntax on     " Turn on syntax colors
-set visualbell  " Flash the screen instead of making a sound
-set list " Show spaces
-set mouse=a     " Enable the use of the mouse in all modes
-set listchars=tab:â€º\ ,trail:â€¢,extends:#,nbsp:. " Highlight problematic whitespace
-let mapleader = "," " Change leader key to ,
-set tabstop=4 shiftwidth=4 expandtab " All tabs are spaces
-set scrolloff=5 " the minimum # of lines above/below the cursor
+set expandtab
+set tabstop=4 shiftwidth=4 expandtab " all tabs are spaces
+set autoindent
+set nu " display line numbers
+let g:vim_markdown_folding_disabled = 1
+set nofoldenable
+set scrolloff=5
 set showmode
 set wildmenu
 set wildmode=list:longest
-set cursorline  " Highlight the line the cursor is on
+set cursorline "highlight the line the cursor is on
 set ttyfast
 set backspace=indent,eol,start
-set incsearch   " Start searching as soon as you type
-set laststatus=2    " Show airline all the time
-set colorcolumn=85  " highlight column max
+set incsearch
+set laststatus=2
+"set colorcolumn=85
 set wrap
 set textwidth=79
 set formatoptions=qrn1
 
+hi CursorLine cterm=NONE ctermbg=235
 
-" ------ SHORTCUTS -------
-autocmd FileType python nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
+" disable arrow keys while in normal mode
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
 
-" ------ UI CHANGES -------
+" disable arrow keys while in insert mode
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap j gj
+nnoremap k gk
+inoremap jj <ESC>
+nnoremap <silent><leader>rd :.-1r! echo $RANDOM<CR>
 
-color molokai   " Set the color scheme to molokai
-set t_Co=256    " Turns on xterm colors so you can set the color of the cursor line
-hi CursorLine   cterm=NONE ctermbg=235
-
-" ------ Plugin Changes ------
-
-" airline {
-    let g:airline_theme='molokai'
-    if !exists('g:airline_powerline_fonts')
-       " Use the default set of separators with a few customizations
-        let g:airline_left_sep='â€º'  " Slightly fancier than '>'
-        let g:airline_right_sep='â€¹' " Slightly fancier than '<'
-    endif
-"}
-
-" NerdTree {
-    if isdirectory(expand("~/.vim/bundle/nerdtree"))
-        map <C-e> <plug>NERDTreeTabsToggle<CR>
-        map <leader>e :NERDTreeFind<CR>
-        nmap <leader>nt :NERDTreeFind<CR>
-
-        let NERDTreeShowBookmarks=1
-        let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-        let NERDTreeChDirMode=0
-        let NERDTreeQuitOnOpen=1
-        let NERDTreeMouseMode=2
-        let NERDTreeShowHidden=1
-        let NERDTreeKeepTreeInNewTab=1
-        let g:nerdtree_tabs_open_on_gui_startup=0
-    endif
-    " }
 
 " Fugitive {
     if isdirectory(expand("~/.vim/bundle/vim-fugitive/"))
@@ -120,51 +110,3 @@ hi CursorLine   cterm=NONE ctermbg=235
         nnoremap <silent> <leader>gg :SignifyToggle<CR>
     endif
 "}
-
-" vim-JSON {
-    let g:vim_json_syntax_conceal = 0
-" }
-
-" vim-indent-guides {
-    let g:indent_guides_start_level = 2
-    let g:indent_guides_guide_size = 1
-    let g:indent_guides_enable_on_vim_startup = 1
-" }
-
-" Tabularize {
-    if isdirectory(expand("~/.vim/bundle/tabular"))
-        nmap <Leader>a& :Tabularize /&<CR>
-        vmap <Leader>a& :Tabularize /&<CR>
-        nmap <Leader>a= :Tabularize /=<CR>
-        vmap <Leader>a= :Tabularize /=<CR>
-        nmap <Leader>a: :Tabularize /:<CR>
-        vmap <Leader>a: :Tabularize /:<CR>
-        nmap <Leader>a:: :Tabularize /:\zs<CR>
-        vmap <Leader>a:: :Tabularize /:\zs<CR>
-        nmap <Leader>a, :Tabularize /,<CR>
-        vmap <Leader>a, :Tabularize /,<CR>
-        nmap <Leader>a,, :Tabularize /,\zs<CR>
-        vmap <Leader>a,, :Tabularize /,\zs<CR>
-        nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-        vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-    endif
-" }
-let g:vim_markdown_folding_disabled = 1
-set hlsearch
-
-" disable arrow keys while in normal mode
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
-set nofoldenable
-inoremap jj <ESC>
-nnoremap <silent><leader>rd :.-1r! echo $RANDOM<CR>
-
-let @n = ',rd-ji- [ ] jj$a:€kb€kbjj,rdi    - [ ] jj$a:€kb€kb€kb€kb€kb€kbjj,rdi    - [ ] jj$a:€kb€kb€kb€kb€kb€kbjj,rdi    - [ ] jj$a:€kb€kb€kb€kb€kb€kbjj,rdi    - [ ] jj$a:€kb€kb€kb€kb€kb€kbjj,rd-jhhhhi    - [ ] jj$a:€kb€kb€kb€kb€kb€kbjj'
