@@ -12,9 +12,20 @@ as specified below. If you don't, you'll run into some weird situations where
 the `.vimrc` can't be loaded.
 
 ```
-ln -s ~/os/circlefiles/.vimrc ~/.vimrc
+$ ln -s ~/os/circlefiles/.vimrc ~/.vimrc
 ```
 
 Once that is setup, follow the Vundle vim plugin manager instructions to
 install and then run the plugin install: `:PluginInstall`
+
+#### bash configuration
+
+This repo has both `.bashrc` and `.bash_profile` configurations, although all
+`.bash_profile` does is source `.bashrc`. Again when symlinking this, be sure
+to use absolute paths as specified below:
+
+```
+$ ln -s ~/os/circlefiles/.bashrc ~/.bashrc
+$ ln -s ~/os/circlefiles/.bash_profile ~/.bash_profile
+```
 
