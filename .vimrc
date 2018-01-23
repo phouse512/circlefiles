@@ -25,8 +25,12 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 
-" golang plugin
+" go autocompletion
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
+
+" golang code format plugin
 Plugin 'fatih/vim-go'
+
 
 " solidity plugin
 Plugin 'tomlion/vim-solidity'
