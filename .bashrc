@@ -5,21 +5,33 @@ setup () {
     . ~/dev/envs/$1/bin/activate
 }
 
+vt () {
+    if [ $# -eq 0 ]; then
+        vim + `vita today`
+    else
+        vim + `vita today $1`
+    fi
+}
+
 # for testing mypy/typeshed changes
 alias mypy_test='PYTHONPATH=~/os/mypy python3 -m mypy -f $@'
+
+# opening pycharm
+alias pycharm='open -a /Applications/PyCharm*.app'
 
 # git shortcuts
 alias ga='git add --all'
 alias gb='git branch'
-alias gc='git commit'
+alias gc='git commit -S'
+alias gco='git checkout'
 alias gd='git diff --cached'
+alias gl='git log --show-signature'
 alias glf='git diff-tree --no-commit-id --name-status -r'
 alias gpf='git pull --ff-only'
 alias gr='git remote -v'
 alias gs='git status'
 
-# custom shortcuts
-alias vt='vim + `vita today`'
+export GPG_TTY=$(tty)
 
 # setup custom gopath
 export GOPATH=$HOME/os/go
