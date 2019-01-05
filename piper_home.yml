@@ -7,4 +7,12 @@
   tasks:
     - name: print out the hostname of target
       command: hostname
+    - name: Add UKUU repository 
+      apt_repository:
+        repo: ppa:teejee2008/ppa
+    - name: Install UKUU
+      apt:
+        name: ukuu
+        state: present
+        update_cache: yes
 
