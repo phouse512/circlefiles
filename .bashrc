@@ -13,6 +13,14 @@ vt () {
     fi
 }
 
+FILE="/Users/PhilipHouse/.amperrc"
+if [ -f $FILE ]; then
+    echo ".amperrc found."
+    source ~/.amperrc
+else
+    echo "The file '$FILE' is not found."
+fi
+
 # for testing mypy/typeshed changes
 alias mypy_test='PYTHONPATH=~/os/mypy python3 -m mypy -f $@'
 
@@ -30,6 +38,7 @@ alias glf='git diff-tree --no-commit-id --name-status -r'
 alias gpf='git pull --ff-only'
 alias gr='git remote -v'
 alias gs='git status'
+alias gsh='git rev-parse --short HEAD'
 
 export GPG_TTY=$(tty)
 
@@ -40,6 +49,9 @@ export PATH=$PATH:$GOPATH/bin
 
 # adding psql/other postgres tools to path from Postgres.app install
 export PATH=/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH
+
+# adding java home to path
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 
 ### AUTO SET BY NVM

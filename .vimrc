@@ -31,9 +31,11 @@ Plugin 'nsf/gocode', {'rtp': 'vim/'}
 " golang code format plugin
 Plugin 'fatih/vim-go'
 
-
 " solidity plugin
 Plugin 'tomlion/vim-solidity'
+
+" vim plugin
+Plugin 'moll/vim-node'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
