@@ -1,0 +1,10 @@
+---
+
+- name: Run piper home linux server setup
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+  tasks:
+    - name: print out the hostname of target
+      command: hostname
+
