@@ -30,6 +30,7 @@ alias pycharm='open -a /Applications/PyCharm*.app'
 # git shortcuts
 alias ga='git add --all'
 alias gb='git branch'
+alias gbd="git for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'"
 alias gc='git commit -S'
 alias gco='git checkout'
 alias gd='git diff --cached'
@@ -39,6 +40,7 @@ alias gpf='git pull --ff-only'
 alias gr='git remote -v'
 alias gs='git status'
 alias gsh='git rev-parse --short HEAD'
+alias gdeletemerged="git branch --merged | egrep -v \"(^\*|master|dev)\" | xargs git branch -d"
 
 export GPG_TTY=$(tty)
 

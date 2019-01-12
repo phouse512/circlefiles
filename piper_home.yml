@@ -27,4 +27,8 @@
       apt:
         name: lm-sensors
         state: present
+    - name: Install ffmpeg
+      apt:
+        name: ffmpeg
+        state: present
 
