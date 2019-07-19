@@ -90,7 +90,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # update prompt to custom format
 VENV="\$(virtualenv_info)";
-export PS1="${BRed}${VENV}${Color_Off}[${BGreen}\u@\h${Color_Off}:${BBlack}\D{%F %T}${Color_Off}:${BBlue}\W${Color_Off}] "
+export PS1="\[${BRed}\]${VENV}\[${Color_Off}\][\[${BGreen}\]\u@\h\[${Color_Off}\]:\[${BBlack}\]\D{%F %T}\[${Color_Off}\]:\[${BBlue}\]\W\[${Color_Off}\]] "
 
 ### AUTO SET BY NVM
 export NVM_DIR="$HOME/.nvm"
