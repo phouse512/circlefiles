@@ -34,6 +34,15 @@ vt () {
     fi
 }
 
+function virtualenv_info() {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        venv="${VIRTUAL_ENV##*/}"
+    else
+        venv=''
+    fi
+    [[ -n "$venv" ]] && echo "(venv:$venv) "
+}
+
 FILE="/Users/PhilipHouse/.amperrc"
 if [ -f $FILE ]; then
     echo ".amperrc found."
@@ -76,9 +85,12 @@ export PATH=/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH
 # adding java home to path
 export JAVA_HOME=$(/usr/libexec/java_home)
 
-# update prompt to custom format
-export PS1="[${BGreen}\u@\h${Color_Off}:${BBlack}\D{%F %T}${Color_Off}:${BBlue}\W${Color_Off}] "
+# disable virtualenv defeault prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+# update prompt to custom format
+VENV="\$(virtualenv_info)";
+export PS1="${BRed}${VENV}${Color_Off}[${BGreen}\u@\h${Color_Off}:${BBlack}\D{%F %T}${Color_Off}:${BBlue}\W${Color_Off}] "
 
 ### AUTO SET BY NVM
 export NVM_DIR="$HOME/.nvm"
