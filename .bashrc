@@ -53,8 +53,13 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH
 
 # adding java home to path
-export JAVA_HOME=$(/usr/libexec/java_home)
-
+JAVA_FILE="/usr/libexec/java_home"
+if [ -f $JAVA_FILE ]; then
+    echo "java_home found."
+    export JAVA_HOME=$(/usr/libexec/java_home)
+else
+    echo "/usr/libexec/java_home not found, not exporting."
+fi
 
 ### AUTO SET BY NVM
 export NVM_DIR="$HOME/.nvm"
