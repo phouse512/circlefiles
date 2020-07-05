@@ -7,6 +7,10 @@
   tasks:
     - name: print out the hostname of target
       command: hostname
+    - name: add google linux key
+      apt_key:
+        url: https://dl.google.com/linux/linux_signing_key.pub
+        state: present 
     - name: Add UKUU repository 
       apt_repository:
         repo: ppa:teejee2008/ppa
@@ -30,5 +34,13 @@
     - name: Install ffmpeg
       apt:
         name: ffmpeg
+        state: present
+    - name: install spotify cli
+      pip:
+        name: spotify-cli-linux
+        executable: pip3
+    - name: install nmap
+      apt:
+        name: nmap
         state: present
 
