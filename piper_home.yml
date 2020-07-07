@@ -43,4 +43,32 @@
       apt:
         name: nmap
         state: present
+    - name: docker key add
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+    - name: add docker stable
+      apt_repository:
+          repo: deb [arch=amd64] https://download.docker.com/linux/{{ansible_distribution|lower}} {{ansible_distribution_release}} stable
+    - name: install docker
+      apt: name={{ item }} state=installed
+      with_items:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+    - name: create docker group
+      group:
+        name: docker
+        state: present
+# TODO: modify this to be an exec command that adds the user, we
+# don't want to override all existing users for wisosim, just add on top
+#    - name: add wisosim user to docker group
+#      user:
+#        name: wisosim
+#        state: present
+#        groups: docker
+    - name: install tmux
+      apt:
+        name: tmux
+        state: present
 

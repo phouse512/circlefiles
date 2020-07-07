@@ -41,3 +41,16 @@ To run the playbook, here is a sample command:
 $ sudo ansible-playbook piper_home.yml 
 ```
 
+#### utility tasks
+
+This repo also uses the invoke python library to store some automated tasks for
+various things.
+
+```
+# list all tasks available
+$ inv -l
+
+# run raspberry pi zero setup
+$ inv rasp-pi-zero-setup
+```
+
