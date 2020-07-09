@@ -32,3 +32,8 @@ def rasp_pi_zero_setup(c):
     c.run("touch {}/ssh".format(SD_PATH))
     return
 
+@task
+def scan_image(c):
+    logger.info("Running ubuntu scan image.")
+    c.run("scanimage --format png >test.png")
+

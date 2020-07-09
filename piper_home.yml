@@ -71,4 +71,19 @@
       apt:
         name: tmux
         state: present
+    - name: add obs repository
+      apt_repository:
+        repo: ppa:obsproject/obs-studio
+    - name: install obs
+      apt:
+        name: obs-studio
+        state: present
+    ### scanner utilities
+    - name: install sane
+      apt: name={{ item }} state=installed
+      with_items:
+        - sane
+        - sane-utils
+        - libsane-extras
+        - xsane
 
