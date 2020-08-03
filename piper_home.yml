@@ -86,4 +86,8 @@
         - sane-utils
         - libsane-extras
         - xsane
+    - name: install ack
+      apt:
+        name: ack
+        state: present
 

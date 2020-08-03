@@ -1,0 +1,10 @@
+---
+- name: Setup raspberry pi document server
+  hosts: document_server
+  become: yes
+  tasks:
+    - name: install simple scan
+      apt:
+        name: simple-scan
+        state: present
+
