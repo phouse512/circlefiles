@@ -74,6 +74,9 @@ alias gdeletemerged="git branch --merged | egrep -v \"(^\*|master|dev)\" | xargs
 
 export GPG_TTY=$(tty)
 
+# alias starting jupyter
+alias js='jupyter notebook --NotebookApp.iopub_data_rate_limit=10000000000'
+
 # setup custom gopath
 export GOPATH=$HOME/os/go
 export GOROOT=/usr/local/go
