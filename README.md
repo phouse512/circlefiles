@@ -29,3 +29,28 @@ $ ln -s ~/os/circlefiles/.bashrc ~/.bashrc
 $ ln -s ~/os/circlefiles/.bash_profile ~/.bash_profile
 ```
 
+#### ansible work
+
+There are ansible playbooks for different servers, primarily the piper homebase
+computer.
+
+To run the playbook, here is a sample command:
+
+```
+# if you are running against local machine, as below, sudo is required
+$ sudo ansible-playbook piper_home.yml 
+```
+
+#### utility tasks
+
+This repo also uses the invoke python library to store some automated tasks for
+various things.
+
+```
+# list all tasks available
+$ inv -l
+
+# run raspberry pi zero setup
+$ inv rasp-pi-zero-setup
+```
+

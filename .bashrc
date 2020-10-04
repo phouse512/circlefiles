@@ -85,8 +85,6 @@ export PATH=$PATH:$GOPATH/bin
 # adding psql/other postgres tools to path from Postgres.app install
 export PATH=/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH
 
-# adding java home to path
-export JAVA_HOME=$(/usr/libexec/java_home)
 
 # disable virtualenv defeault prompt
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -94,6 +92,14 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # update prompt to custom format
 VENV="\$(virtualenv_info)";
 export PS1="\[${BRed}\]${VENV}\[${Color_Off}\][\[${BGreen}\]\u@\h\[${Color_Off}\]:\[${BBlack}\]\D{%F %T}\[${Color_Off}\]:\[${BBlue}\]\W\[${Color_Off}\]] "
+
+JAVA_FILE="/usr/libexec/java_home"
+if [ -f $JAVA_FILE ]; then
+    echo "java_home found."
+    export JAVA_HOME=$(/usr/libexec/java_home)
+else
+    echo "/usr/libexec/java_home not found, not exporting."
+fi
 
 ### AUTO SET BY NVM
 export NVM_DIR="$HOME/.nvm"
