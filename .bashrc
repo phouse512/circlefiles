@@ -1,5 +1,26 @@
 echo 'From bashrc'
 
+# adding colors
+Color_Off='\033[0m'       # Text Reset
+
+Black='\033[0;30m'        # Black
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+Yellow='\033[0;33m'       # Yellow
+Blue='\033[0;34m'         # Blue
+Purple='\033[0;35m'       # Purple
+Cyan='\033[0;36m'         # Cyan
+White='\033[0;37m'        # White
+
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BWhite='\033[1;37m'       # White
+
 # used for setting up python virtualenvs
 setup () {
     . ~/dev/envs/$1/bin/activate
@@ -11,6 +32,15 @@ vt () {
     else
         vim + `vita today $1`
     fi
+}
+
+function virtualenv_info() {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        venv="${VIRTUAL_ENV##*/}"
+    else
+        venv=''
+    fi
+    [[ -n "$venv" ]] && echo "(venv:$venv) "
 }
 
 FILE="/Users/PhilipHouse/.amperrc"
@@ -44,6 +74,9 @@ alias gdeletemerged="git branch --merged | egrep -v \"(^\*|master|dev)\" | xargs
 
 export GPG_TTY=$(tty)
 
+# alias starting jupyter
+alias js='jupyter notebook --NotebookApp.iopub_data_rate_limit=10000000000'
+
 # setup custom gopath
 export GOPATH=$HOME/os/go
 export GOROOT=/usr/local/go
@@ -52,7 +85,14 @@ export PATH=$PATH:$GOPATH/bin
 # adding psql/other postgres tools to path from Postgres.app install
 export PATH=/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH
 
-# adding java home to path
+
+# disable virtualenv defeault prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# update prompt to custom format
+VENV="\$(virtualenv_info)";
+export PS1="\[${BRed}\]${VENV}\[${Color_Off}\][\[${BGreen}\]\u@\h\[${Color_Off}\]:\[${BBlack}\]\D{%F %T}\[${Color_Off}\]:\[${BBlue}\]\W\[${Color_Off}\]] "
+
 JAVA_FILE="/usr/libexec/java_home"
 if [ -f $JAVA_FILE ]; then
     echo "java_home found."
@@ -73,3 +113,7 @@ export NVM_DIR="$HOME/.nvm"
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [ -f /Users/philiphouse/.nvm/versions/node/v6.7.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /Users/philiphouse/.nvm/versions/node/v6.7.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[ -f /Users/philiphouse/.nvm/versions/node/v8.9.4/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /Users/philiphouse/.nvm/versions/node/v8.9.4/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash
