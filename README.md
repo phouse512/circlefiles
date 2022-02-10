@@ -39,6 +39,13 @@ To run the playbook, here is a sample command:
 ```
 # if you are running against local machine, as below, sudo is required
 $ sudo ansible-playbook piper_home.yml 
+
+# if running remotely, uses included hosts.ini file as below
+$ sudo ansible-playbook -i hosts.ini zm_server.yml --ask-pass
+
+
+# to test if your connection works, using ansible ping
+$ ansible <host> -i hosts.ini -m ping --ask-pass
 ```
 
 ### utility tasks
@@ -89,6 +96,17 @@ $ sudo apt install openssh-server
 
 # from piper home, to verify server open and running
 $ telnet <ip> 22
+```
+
+#### installing python for ansible
+
+Ansible requires python2.7 to run, so that must be installed manually.
+
+```
+$ sudo apt update
+$ sudo apt install software-properties-common
+$ sudo add-apt-repository ppa:deadsnakes/ppa
+$ sudo apt install python python2.7
 ```
 
 
