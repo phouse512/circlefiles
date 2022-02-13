@@ -77,13 +77,29 @@ export GPG_TTY=$(tty)
 # alias starting jupyter
 alias js='jupyter notebook --NotebookApp.iopub_data_rate_limit=10000000000'
 
+# alias ultralist task manager
+alias ul='ultralist'
+# alias incomplete amper work items
+alias ula='ultralist l completed:false group:p project:-personal,-piper'
+
+# alias incomplete amper work items, due today
+alias ulat='ula duebefore:tom'
+
+# list personal agenda
+alias ulp='ultralist l completed:false group:p project:personal,piper'
+
 # setup custom gopath
 export GOPATH=$HOME/os/go
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOPATH/bin
+export GOBIN=$GOPATH/bin
 
 # adding psql/other postgres tools to path from Postgres.app install
 export PATH=/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH
+
+# add CMake to build path
+export PATH=/Applications/CMake.app/Contents/bin:$PATH
+
 
 
 # disable virtualenv defeault prompt
@@ -117,3 +133,4 @@ export NVM_DIR="$HOME/.nvm"
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [ -f /Users/philiphouse/.nvm/versions/node/v8.9.4/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /Users/philiphouse/.nvm/versions/node/v8.9.4/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash
+. "$HOME/.cargo/env"

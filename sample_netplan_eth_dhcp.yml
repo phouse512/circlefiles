@@ -1,0 +1,8 @@
+# sample netplan config for networkd and ethernet, no dhcp
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens33: # <-- name of the ethernet device, use the output of ip a
+      dhcp4: yes
+

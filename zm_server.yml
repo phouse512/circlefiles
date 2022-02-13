@@ -1,0 +1,15 @@
+---
+
+- name: Run piper zone minder server setup
+  hosts: zm_server
+  become: yes
+  tasks:
+    - name: print out the hostname of target
+      command: hostname
+    - name: add zoneminder repository
+      apt_repository:
+        repo: ppa:iconnor/zoneminder-1.34
+    - name: install zoneminder
+      apt:
+        upgrade: dist
+
