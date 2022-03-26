@@ -29,7 +29,7 @@ $ ln -s ~/os/circlefiles/.bashrc ~/.bashrc
 $ ln -s ~/os/circlefiles/.bash_profile ~/.bash_profile
 ```
 
-### ansible work
+## ansible work
 
 There are ansible playbooks for different servers, primarily the piper homebase
 computer.
@@ -46,6 +46,24 @@ $ sudo ansible-playbook -i hosts.ini zm_server.yml --ask-pass
 
 # to test if your connection works, using ansible ping
 $ ansible <host> -i hosts.ini -m ping --ask-pass
+```
+
+### macbook configuration
+
+There is a special notebook: `mac_dev.yml` for configuring my local macbook
+environment, inspired by the [Jeff Geerling version](https://github.com/geerlingguy/mac-dev-playbook).
+
+For a new macbook configuration, follow these instructions:
+
+1. Ensure xcode is installed ahead of time, using `xcode-select --install`.
+2. Upgrade pip: `sudo pip3 install --upgrade pip`
+3. Install ansible using pip3 with `pip3 install ansible`
+4. Download / clone this repo.
+
+To run the playbooks, we need to install imported Ansible roles and then run the actual playbook:
+```
+$ ansible-galaxy install -r requirements.yml 
+$ ansible-playbook mac_dev.yml --ask-become-pass
 ```
 
 ### utility tasks

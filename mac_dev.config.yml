@@ -1,0 +1,24 @@
+---
+downloads: ~/.ansible-downloads/
+
+configure_osx: true
+
+homebrew_installed_packages:
+  # - ansible # installed via pip
+  - git
+  - gpg
+  - node
+  - nvm
+  - pyenv
+
+homebrew_taps:
+  - homebrew/core
+  - homebrew/cask
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - chromedriver
+  - docker
+  - firefox
+  - google-chrome
+  - slack
