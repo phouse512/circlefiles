@@ -57,7 +57,10 @@ For a new macbook configuration, follow these instructions:
 
 1. Ensure xcode is installed ahead of time, using `xcode-select --install`.
 2. Upgrade pip: `sudo pip3 install --upgrade pip`
-3. Install ansible using pip3 with `pip3 install ansible`
+3. Install ansible using pip3 with `pip3 install ansible`. You may find that `ansible` and
+`ansible-galaxy` don't show up in your path after install. In my case on macOS 12.2.1 Monterey,
+I had to manually add the default python install bin to my path with the following:
+`export PATH=$PATH:~/Library/Python/3.8/bin`.
 4. Download / clone this repo.
 
 To run the playbooks, we need to install imported Ansible roles and then run the actual playbook:
