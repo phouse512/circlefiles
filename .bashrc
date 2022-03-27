@@ -109,14 +109,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 VENV="\$(virtualenv_info)";
 export PS1="\[${BRed}\]${VENV}\[${Color_Off}\][\[${BGreen}\]\u@\h\[${Color_Off}\]:\[${BBlack}\]\D{%F %T}\[${Color_Off}\]:\[${BBlue}\]\W\[${Color_Off}\]] "
 
-JAVA_FILE="/usr/libexec/java_home"
-if [ -f $JAVA_FILE ]; then
-    echo "java_home found."
-    export JAVA_HOME=$(/usr/libexec/java_home)
-else
-    echo "/usr/libexec/java_home not found, not exporting."
-fi
-
 ### AUTO SET BY NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -133,4 +125,3 @@ export NVM_DIR="$HOME/.nvm"
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [ -f /Users/philiphouse/.nvm/versions/node/v8.9.4/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /Users/philiphouse/.nvm/versions/node/v8.9.4/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash
-. "$HOME/.cargo/env"
