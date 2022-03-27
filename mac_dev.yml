@@ -21,7 +21,7 @@
 
   tasks:
     - user:
-        name: {{ ansible_env.USER }}
+        name: "{{ ansible_env.USER }}"
         shell: /bin/bash
     - import_tasks: tasks/neovim.yml
       tags: ['neovim']
