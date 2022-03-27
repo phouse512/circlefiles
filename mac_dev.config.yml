@@ -1,7 +1,39 @@
 ---
 downloads: ~/.ansible-downloads/
 
+configure_dotfiles: false
+configure_dock: true
 configure_osx: true
+
+dockitems_remove:
+  - Contacts
+  - FaceTime
+  - Keynote
+  - Mail
+  - Maps
+  - Music
+  - News
+  - Numbers
+  - Pages
+  - Photos
+  - Podcasts
+  - Reminders
+  - Safari
+  - TV
+
+dockitems_persist:
+  - name: "Firefox"
+    path: "/Applications/Firefox.app/"
+    pos: 3
+  - name: "Chrome"
+    path: "/Applications/Google Chrome.app/"
+    pos: 4
+  - name: "iTerm"
+    path: "/Applications/iTerm.app/"
+    pos: 4
+  - name: "Docker"
+    path: "/Applications/Docker.app/"
+    pos: 6
 
 homebrew_installed_packages:
   # - ansible # installed via pip
@@ -18,10 +50,12 @@ homebrew_taps:
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
+  - backblaze
   - chromedriver
   - docker
   - firefox
   - google-chrome
+  - iterm2
 
 mas_installed_apps: []
 mas_email: "{{ apple_id_user }}"
