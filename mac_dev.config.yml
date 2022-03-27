@@ -37,6 +37,7 @@ dockitems_persist:
 
 homebrew_installed_packages:
   # - ansible # installed via pip
+  - dockutil
   - git
   - gpg
   - mas
@@ -50,6 +51,7 @@ homebrew_taps:
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
+  - 1password
   - backblaze
   - chromedriver
   - docker
