@@ -14,7 +14,7 @@ dotfiles_files:
   - .bashrc
   - .gitignore
   - .nvmrc
-  - .config/nvim
+  - .config/nvim/init.vim
 
 dockitems_remove:
   - Contacts
