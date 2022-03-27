@@ -1,6 +1,9 @@
 ---
 - hosts: development
 
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/opt/homebrew/bin"
+
   vars_files:
     - vars.yml
     - mac_dev.config.yml
