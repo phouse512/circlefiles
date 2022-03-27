@@ -20,9 +20,8 @@
       tags: ['dock']
 
   tasks:
-    - user:
-        name: "{{ ansible_env.USER }}"
-        shell: /bin/bash
+    - name: change shell to bash
+      command: chsh -s /bin/bash
     - import_tasks: tasks/neovim.yml
       tags: ['neovim']
 
