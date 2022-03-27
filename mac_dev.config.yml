@@ -9,6 +9,7 @@ dockitems_remove:
   - Contacts
   - FaceTime
   - Keynote
+  - Launchpad
   - Mail
   - Maps
   - Music
@@ -58,6 +59,7 @@ homebrew_cask_apps:
   - firefox
   - google-chrome
   - iterm2
+  - postico
 
 mas_installed_apps: []
 mas_email: "{{ apple_id_user }}"
