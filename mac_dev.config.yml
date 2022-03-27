@@ -7,6 +7,7 @@ homebrew_installed_packages:
   # - ansible # installed via pip
   - git
   - gpg
+  - mas
   - node
   - nvm
   - pyenv
@@ -21,4 +22,8 @@ homebrew_cask_apps:
   - docker
   - firefox
   - google-chrome
+
+mas_installed_apps: []
+mas_email: "{{ apple_id_user }}"
+mas_password: "{{ apple_id_password }}"
 

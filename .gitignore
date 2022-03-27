@@ -2,3 +2,5 @@
 **.swp
 *.retry
 node_modules
+
+roles/**
