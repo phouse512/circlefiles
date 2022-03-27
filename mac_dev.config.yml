@@ -10,9 +10,11 @@ dotfiles_repo_version: prod
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/os/circlefiles
 dotfiles_files:
+  - .bash_profile
   - .bashrc
   - .gitignore
   - .nvmrc
+  - .config/nvim
 
 dockitems_remove:
   - Contacts
