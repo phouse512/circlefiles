@@ -1,0 +1,11 @@
+---
+- name: create neovim config directory
+  file:
+    path: ~/.config/nvim
+    state: directory
+
+- name: create nvm config directory
+  file:
+    path: ~/.nvm
+    state: directory
+

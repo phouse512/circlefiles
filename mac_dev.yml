@@ -8,6 +8,10 @@
     - vars.yml
     - mac_dev.config.yml
 
+  pre_tasks:
+    - import_tasks: tasks/organization.yml
+      tags: ['organization']
+
   roles:
     - role: elliotweiser.osx-command-line-tools
     - role: geerlingguy.mac.homebrew
