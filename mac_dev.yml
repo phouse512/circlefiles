@@ -19,3 +19,10 @@
       when: configure_dock
       tags: ['dock']
 
+  tasks:
+    - user:
+        name: {{ ansible_env.USER }}
+        shell: /bin/bash
+    - import_tasks: tasks/neovim.yml
+      tags: ['neovim']
+

@@ -1,0 +1,4 @@
+---
+- name: install neovim plugins
+  command: nvim -c "PlugInstall" -c ":qa!"
+
