@@ -13,7 +13,7 @@
 - name: Check which ssh keys already in agent
   shell: ssh-add -l
   register: ssh_keys_existing
-  failed_when: ssh_keys_existing >= 2
+  failed_when: ssh_keys_existing.rc >= 2
   changed_when: false
 
 - name: Add new keys to ssh agent.
