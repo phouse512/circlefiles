@@ -9,3 +9,8 @@
     path: ~/.nvm
     state: directory
 
+- name: create ssh directory
+  file:
+    path: ~/.ssh
+    state: directory
+
