@@ -8,5 +8,5 @@
     - name: Download AWS CLI installer
       get_url:
         url: https://awscli.amazonaws.com/AWSCLIV2.pkg
-        dest: AWSCLIV2.pkg
+        dest: ./AWSCLIV2.pkg
 
