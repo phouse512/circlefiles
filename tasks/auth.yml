@@ -1,6 +1,7 @@
 ---
 - name: Generate OpenSSH keypair
   community.crypto.openssh_keypair:
+    backend: opensshbin
     comment: "{{ ssh_keypair.email }}"
     passphrase: "{{ ssh_keypair.passphrase }}"
     path: "{{ ssh_keypair.path }}"
@@ -12,7 +13,7 @@
 - name: Check which ssh keys already in agent
   shell: ssh-add -l
   register: ssh_keys_existing
-  failed_when: ssh_keys_added_entities.rc >= 2
+  failed_when: ssh_keys_existing >= 2
   changed_when: false
 
 - name: Add new keys to ssh agent.
