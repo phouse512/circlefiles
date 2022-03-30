@@ -28,6 +28,7 @@
 
   tasks:
     - name: change shell to bash
+      become: yes
       command: chsh -s /bin/bash
     - import_tasks: tasks/neovim.yml
       tags: ['neovim']
