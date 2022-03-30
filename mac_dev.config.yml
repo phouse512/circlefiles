@@ -81,3 +81,10 @@ mas_installed_apps: []
 mas_email: "{{ apple_id_user }}"
 mas_password: "{{ apple_id_password }}"
 
+ssh_keys_dir: "{{ ansible_env.HOME}}/.ssh"
+ssh_keypair:
+  type: ed25519
+  path: "{{ ssh_keys_dir }}/id_rsa"
+  email: "{{ ssh_key_email }}"
+  passphrase: "{{ ssh_key_passphrase }}"
+

@@ -4,5 +4,7 @@ roles:
   - name: geerlingguy.dotfiles
 
 collections:
+  - name: community.crypto
+  - name: community.general
   - name: geerlingguy.mac
 

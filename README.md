@@ -63,6 +63,13 @@ I had to manually add the default python install bin to my path with the followi
 `export PATH=$PATH:~/Library/Python/3.8/bin`.
 4. Download / clone this repo.
 
+There are some pre-requisites to handle ahead of time:
+
+1. Review the default variables in `mac_dev.config.yml` and make sure they are up-to-date.
+2. Open `vars.yml` with `$ ansible-vault edit vars.yml` and enter the passphrase, and make sure 
+those are correct as well. It's likely you will need to regenerate a new Github personal access
+token that has `admin:public_key` and `admin:gpg_key` access as the existing one might be expired.
+
 To run the playbooks, we need to install imported Ansible roles and then run the actual playbook:
 ```
 $ ansible-galaxy install -r requirements.yml 

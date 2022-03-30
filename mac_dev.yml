@@ -34,4 +34,6 @@
       tags: ['neovim']
     - import_tasks: tasks/aws.yml
       tags: ['aws']
+    - import_tasks: tasks/auth.yml
+      tags: ['auth']
 
