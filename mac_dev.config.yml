@@ -59,6 +59,7 @@ homebrew_installed_packages:
   - neovim
   - node
   - nvm
+  - openssh
   - pyenv
   - ultralist
 
