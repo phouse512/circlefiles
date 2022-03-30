@@ -83,8 +83,9 @@ mas_password: "{{ apple_id_password }}"
 
 ssh_keys_dir: "{{ ansible_env.HOME}}/.ssh"
 ssh_keypair:
-  type: ed25519
-  path: "{{ ssh_keys_dir }}/id_rsa"
+  bits: 4096
   email: "{{ ssh_key_email }}"
   passphrase: "{{ ssh_key_passphrase }}"
+  path: "{{ ssh_keys_dir }}/id_rsa"
+  type: rsa
 
