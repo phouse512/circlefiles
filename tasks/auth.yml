@@ -21,7 +21,7 @@
     send "{{ ssh_keypair.passphrase }}"
   args:
     executable: /usr/bin/expect
-  when: "{{ ssh_keypair.path}}" not in ssh_keys_existing.stdout
+  when: "{{ ssh_keypair.path}} not in ssh_keys_existing.stdout"
 
 - name: Add public key to Github
   local_action:
