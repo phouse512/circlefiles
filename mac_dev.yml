@@ -30,6 +30,8 @@
     - name: change shell to bash
       become: yes
       command: chsh -s /bin/bash
+    - import_tasks: tasks/mac.yml
+      tags: ['mac']
     - import_tasks: tasks/neovim.yml
       tags: ['neovim']
     - import_tasks: tasks/aws.yml

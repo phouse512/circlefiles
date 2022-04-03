@@ -1,0 +1,12 @@
+---
+- name: check if rosetta is installed
+  shell: pgrep oahd
+  register: rosetta_install_status
+  failed_when: ( rosetta_install_status not in [0, 1 ] )
+
+- when: rosetta_install_status.rc == 1
+  block:
+    - name: install rosetta 2
+      become: yes
+      command: softwareupdate --install-rosetta
+
