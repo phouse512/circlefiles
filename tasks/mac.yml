@@ -8,5 +8,5 @@
   block:
     - name: install rosetta 2
       become: yes
-      command: softwareupdate --install-rosetta
+      command: softwareupdate --install-rosetta --agree-to-license
 
