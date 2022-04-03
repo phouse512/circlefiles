@@ -79,14 +79,18 @@ homebrew_cask_apps:
   - postico
 
 mas_installed_apps: []
-mas_email: "{{ apple_id_user }}"
-mas_password: "{{ apple_id_password }}"
+mas_email: "{{ apple_id_user }}"  # inside ansible vault
+mas_password: "{{ apple_id_password }}"  # inside ansible vault
 
 ssh_keys_dir: "{{ ansible_env.HOME}}/.ssh"
 ssh_keypair:
   bits: 4096
-  email: "{{ ssh_key_email }}"
-  passphrase: "{{ ssh_key_passphrase }}"
+  email: "{{ ssh_key_email }}"  # inside ansible vault
+  passphrase: "{{ ssh_key_passphrase }}"  # inside ansible vault
   path: "{{ ssh_keys_dir }}/id_rsa"
   type: rsa
+
+git_name: phouse512
+git_email: "{{ github_email }}"  # inside ansible vault
+git_signing_key: "{{ gpg_keyid }}"  # inside ansible vault
 

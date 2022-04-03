@@ -69,6 +69,19 @@ There are some pre-requisites to handle ahead of time:
 2. Open `vars.yml` with `$ ansible-vault edit vars.yml` and enter the passphrase, and make sure 
 those are correct as well. It's likely you will need to regenerate a new Github personal access
 token that has `admin:public_key` and `admin:gpg_key` access as the existing one might be expired.
+3. Handle your GPG key and transport it manually using an offline medium like an SD card or usb
+stick. See below for details on how to do that.
+
+```
+# run on existing machine
+$ cp -rp ~/.gnupg /Volumes/USBSTICK
+
+# run on new machine
+$ cp -r /Volumes/USBSTICK/.gnupg ~/.gnupg
+
+# verify keys exist as expected
+$ gpg --list-keys
+```
 
 To run the playbooks, we need to install imported Ansible roles and then run the actual playbook:
 ```
