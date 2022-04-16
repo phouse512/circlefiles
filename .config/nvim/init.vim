@@ -1,7 +1,7 @@
 call plug#begin( stdpath('data') . 'plugged')
 
 Plug 'fatih/vim-go'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdTree'
 Plug 'godlygeek/tabular'
 
