@@ -15,6 +15,7 @@ dotfiles_files:
   - .gitignore
   - .nvmrc
   - .config/nvim/init.vim
+  - .config/nvim/coc-settings.json
 
 dockitems_remove:
   - Contacts
