@@ -78,6 +78,7 @@ homebrew_cask_apps:
   - google-chrome
   - iterm2
   - postico
+  - rectangle
 
 mas_installed_apps: []
 mas_email: "{{ apple_id_user }}"  # inside ansible vault
