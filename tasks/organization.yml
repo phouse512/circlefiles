@@ -1,16 +1,12 @@
 ---
-- name: create neovim config directory
+- name: create directories for initial setup
   file:
-    path: ~/.config/nvim
+    path: "{{ item }}"
     state: directory
-
-- name: create nvm config directory
-  file:
-    path: ~/.nvm
-    state: directory
-
-- name: create ssh directory
-  file:
-    path: ~/.ssh
-    state: directory
+  loop:
+    - ~/.config/nvim
+    - ~/.nvm
+    - ~/.ssh
+    - ~/os
+    - ~/amper
 

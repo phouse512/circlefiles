@@ -55,6 +55,7 @@ homebrew_installed_packages:
   # - ansible # installed via pip
   - dockutil
   - git
+  - git-crypt
   - gpg
   - mas
   - neovim
