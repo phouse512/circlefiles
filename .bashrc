@@ -103,6 +103,10 @@ export PATH=/Applications/CMake.app/Contents/bin:$PATH
 # add homebrew bin to path
 export PATH=/opt/homebrew/bin:$PATH
 
+# add alias for x86 homebrew install
+alias brew86="arch -x86_64 /usr/local/bin/brew"
+alias pyenv86="arch -x86_64 pyenv"
+
 # disable virtualenv defeault prompt
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
