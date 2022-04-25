@@ -40,8 +40,16 @@
 - name: ensure all amper repos exist
   ansible.builtin.git:
     repo: "{{ item.ssh_url }}"
-    dest: "~/amper/{{ item.name }}"
+    dest: "~/{{ amper_dir }}/{{ item.name }}"
     update: no
+  with_items: "{{ repo_list }}"
+
+- name: set remotes of all repos to use ssh
+  community.general.git_config:
+    repo: "~/{{ amper_dir }}/{{ item.name }}"
+    scope: 'local'
+    name: 'remote.origin.url'
+    value: "{{ item.ssh_url }}"
   with_items: "{{ repo_list }}"
 
 - name: set amper configs to symlink

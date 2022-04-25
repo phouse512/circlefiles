@@ -96,3 +96,5 @@ git_name: phouse512
 git_email: "{{ github_email }}"  # inside ansible vault
 git_signing_key: "{{ gpg_keyid }}"  # inside ansible vault
 
+amper_dir: amper
+
