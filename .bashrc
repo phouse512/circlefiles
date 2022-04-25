@@ -100,7 +100,8 @@ export PATH=/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH
 # add CMake to build path
 export PATH=/Applications/CMake.app/Contents/bin:$PATH
 
-
+# add homebrew bin to path
+export PATH=/opt/homebrew/bin:$PATH
 
 # disable virtualenv defeault prompt
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -109,18 +110,16 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 VENV="\$(virtualenv_info)";
 export PS1="\[${BRed}\]${VENV}\[${Color_Off}\][\[${BGreen}\]\u@\h\[${Color_Off}\]:\[${BBlack}\]\D{%F %T}\[${Color_Off}\]:\[${BBlue}\]\W\[${Color_Off}\]] "
 
-JAVA_FILE="/usr/libexec/java_home"
-if [ -f $JAVA_FILE ]; then
-    echo "java_home found."
-    export JAVA_HOME=$(/usr/libexec/java_home)
+# depending on how nvm is installed (brew vs auto), change setup
+export NVM_DIR="$HOME/.nvm"
+if brew list nvm &>/dev/null; then
+    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
+    [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 else
-    echo "/usr/libexec/java_home not found, not exporting."
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
-### AUTO SET BY NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ### AUTO SET BY SERVERLESS
 # tabtab source for serverless package
@@ -133,4 +132,3 @@ export NVM_DIR="$HOME/.nvm"
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [ -f /Users/philiphouse/.nvm/versions/node/v8.9.4/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /Users/philiphouse/.nvm/versions/node/v8.9.4/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash
-. "$HOME/.cargo/env"
