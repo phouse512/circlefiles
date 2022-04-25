@@ -1,0 +1,85 @@
+---
+- name: check if amper serverless version exists
+  shell: |
+    source ~/.nvm/nvm.sh
+    nvm install v8.9.4
+    nvm use v8.9.4
+    which serverless
+  args:
+    executable: /bin/bash
+  register: serverless_install_status
+  failed_when: ( serverless_install_status.rc not in [ 0, 1 ] )
+
+- when: serverless_install_status.rc == 1
+  block:
+    - name: install serverless + plugins
+      shell: |
+        source ~/.nvm/nvm.sh
+        nvm use v8.9.4
+        npm install -g serverless@1.47.0
+        npm install -g serverless-domain-manager@3.2.6
+        npm install -g serverless-python-requirements@3.3.1
+
+- name: list all repos from amper
+  uri:
+    url: https://api.github.com/orgs/ampertech/repos?per_page=100&sort=updated&direction=desc
+    method: GET
+    headers:
+      Authorization: "token {{ github_access_token }}"
+    return_content: yes
+    status_code: 200
+    body_format: json
+  register: github_repos
+
+- name: create list of simple dicts
+  set_fact:
+    repo_list: "{{ repo_list | default([]) + [{ 'name': item.name, 'ssh_url': item.ssh_url }] }}"
+  with_items: "{{ github_repos.json }}"
+  no_log: true
+
+- name: ensure all amper repos exist
+  ansible.builtin.git:
+    repo: "{{ item.ssh_url }}"
+    dest: "~/amper/{{ item.name }}"
+    update: no
+  with_items: "{{ repo_list }}"
+
+- name: set amper configs to symlink
+  set_fact:
+    amper_dotfiles_dir: ~/amper/dotfiles
+    dotlist:
+      - .amperrc
+      - .python-version
+
+- name: Ensure all configured dotfiles are links.
+  command: "ls -F {{ dotfiles_home }}/{{ item }}"
+  register: existing_dotfile_info
+  failed_when: false
+  check_mode: false
+  changed_when: false
+  with_items: "{{ dotlist }}"
+
+- name: Remove existing dotfiles file if a replacement is being linked.
+  file:
+    path: "{{ dotfiles_home }}/{{ dotlist[item.0] }}"
+    state: absent
+  when: "'@' not in item.1.stdout"
+  with_indexed_items: "{{ existing_dotfile_info.results }}"
+
+- name: Link dotfiles into home folder.
+  file:
+    src: "{{ amper_dotfiles_dir }}/{{ item }}"
+    dest: "{{ dotfiles_home }}/{{ item }}"
+    state: link
+    mode: 0644
+  become: false
+  with_items: "{{ dotlist }}"
+
+- name: add ip addresses to etc hosts
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ item.ip }} {{ item.domain }}"
+  become: yes
+  with_items:
+    - {'ip': "{{ dev_amper_ip }}", 'domain': 'dev.amper.io'}
+

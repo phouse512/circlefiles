@@ -2,3 +2,6 @@
 **.swp
 *.retry
 node_modules
+
+roles/**
+AWSCLIV2.pkg

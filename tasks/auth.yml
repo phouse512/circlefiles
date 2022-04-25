@@ -1,0 +1,55 @@
+---
+- name: Generate OpenSSH keypair
+  community.crypto.openssh_keypair:
+    backend: opensshbin
+    comment: "{{ ssh_keypair.email }}"
+    passphrase: "{{ ssh_keypair.passphrase }}"
+    path: "{{ ssh_keypair.path }}"
+    regenerate: never
+    state: present
+    type: "{{ ssh_keypair.type }}"
+
+- name: Check which ssh keys already in agent
+  shell: ssh-add -l
+  register: ssh_keys_existing
+  failed_when: ssh_keys_existing.rc >= 2
+  changed_when: false
+
+- name: Add new keys to ssh agent.
+  shell: |
+    spawn ssh-add -K "{{ ssh_keypair.path }}"
+    expect "Enter passphrase"
+    send "{{ ssh_keypair.passphrase }}"
+  args:
+    executable: /usr/bin/expect
+  when: "ssh_keypair.path not in ssh_keys_existing.stdout"
+
+- name: Add public key to Github
+  local_action:
+    module: github_key
+    name: "{{ ssh_keypair.email }} Public Key"
+    pubkey: "{{ lookup('file', '{{ ssh_keypair.path }}.pub') }}"
+    state: present
+    token: "{{ github_access_token }}"
+
+- name: Set git user
+  community.general.git_config:
+    name: user.name
+    scope: global
+    state: present
+    value: "{{ git_name }}"
+
+- name: Set git email
+  community.general.git_config:
+    name: user.email
+    scope: global
+    state: present
+    value: "{{ git_email }}"
+
+- name: Set git signing key
+  community.general.git_config:
+    name: user.signingkey
+    scope: global
+    state: present
+    value: "{{ git_signing_key }}"
+

@@ -1,0 +1,17 @@
+---
+- name: Check if AWS CLI is installed.
+  shell: which aws
+  register: aws_install_status
+  failed_when: ( aws_install_status.rc not in [ 0, 1 ] )
+
+- when: aws_install_status.rc == 1
+  block:
+    - name: Download AWS CLI installer
+      get_url:
+        url: https://awscli.amazonaws.com/AWSCLIV2.pkg
+        dest: ./AWSCLIV2.pkg
+
+    - name: Run AWS CLI installer
+      become: yes
+      command: installer -pkg ./AWSCLIV2.pkg -target /
+

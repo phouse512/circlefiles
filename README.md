@@ -29,7 +29,7 @@ $ ln -s ~/os/circlefiles/.bashrc ~/.bashrc
 $ ln -s ~/os/circlefiles/.bash_profile ~/.bash_profile
 ```
 
-### ansible work
+## ansible work
 
 There are ansible playbooks for different servers, primarily the piper homebase
 computer.
@@ -46,6 +46,47 @@ $ sudo ansible-playbook -i hosts.ini zm_server.yml --ask-pass
 
 # to test if your connection works, using ansible ping
 $ ansible <host> -i hosts.ini -m ping --ask-pass
+```
+
+### macbook configuration
+
+There is a special notebook: `mac_dev.yml` for configuring my local macbook
+environment, inspired by the [Jeff Geerling version](https://github.com/geerlingguy/mac-dev-playbook).
+
+For a new macbook configuration, follow these instructions:
+
+1. Ensure xcode is installed ahead of time, using `xcode-select --install`.
+2. Upgrade pip: `sudo pip3 install --upgrade pip`
+3. Install ansible using pip3 with `pip3 install ansible`. You may find that `ansible` and
+`ansible-galaxy` don't show up in your path after install. In my case on macOS 12.2.1 Monterey,
+I had to manually add the default python install bin to my path with the following:
+`export PATH=$PATH:~/Library/Python/3.8/bin`.
+4. Download / clone this repo.
+
+There are some pre-requisites to handle ahead of time:
+
+1. Review the default variables in `mac_dev.config.yml` and make sure they are up-to-date.
+2. Open `vars.yml` with `$ ansible-vault edit vars.yml` and enter the passphrase, and make sure 
+those are correct as well. It's likely you will need to regenerate a new Github personal access
+token that has `admin:public_key` and `admin:gpg_key` access as the existing one might be expired.
+3. Handle your GPG key and transport it manually using an offline medium like an SD card or usb
+stick. See below for details on how to do that.
+
+```
+# run on existing machine
+$ cp -rp ~/.gnupg /Volumes/USBSTICK
+
+# run on new machine
+$ cp -r /Volumes/USBSTICK/.gnupg ~/.gnupg
+
+# verify keys exist as expected
+$ gpg --list-keys
+```
+
+To run the playbooks, we need to install imported Ansible roles and then run the actual playbook:
+```
+$ ansible-galaxy install -r requirements.yml 
+$ ansible-playbook mac_dev.yml --ask-become-pass
 ```
 
 ### utility tasks

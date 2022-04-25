@@ -1,0 +1,98 @@
+---
+downloads: ~/.ansible-downloads/
+
+configure_dotfiles: true
+configure_dock: true
+configure_osx: true
+
+dotfiles_repo: https://github.com/phouse512/circlefiles.git
+dotfiles_repo_version: prod
+dotfiles_repo_accept_hostkey: true
+dotfiles_repo_local_destination: ~/os/circlefiles
+dotfiles_files:
+  - .bash_profile
+  - .bashrc
+  - .gitignore
+  - .nvmrc
+  - .config/nvim/init.vim
+  - .config/nvim/coc-settings.json
+
+dockitems_remove:
+  - Contacts
+  - FaceTime
+  - Keynote
+  - Launchpad
+  - Mail
+  - Maps
+  - Music
+  - News
+  - Numbers
+  - Pages
+  - Photos
+  - Podcasts
+  - Reminders
+  - Safari
+  - TV
+
+dockitems_persist:
+  - name: "Firefox"
+    path: "/Applications/Firefox.app/"
+    pos: 6
+  - name: "Google Chrome"
+    path: "/Applications/Google Chrome.app/"
+    pos: 7
+  - name: "iTerm"
+    path: "/Applications/iTerm.app/"
+    pos: 4
+  - name: "Postico"
+    path: "/Applications/Postico.app/"
+    pos: 5
+  - name: "Docker"
+    path: "/Applications/Docker.app/"
+    pos: 8
+
+homebrew_installed_packages:
+  # - ansible # installed via pip
+  - dockutil
+  - git
+  - git-crypt
+  - gpg
+  - mas
+  - neovim
+  - node
+  - nvm
+  - openssh
+  - pyenv
+  - ultralist
+
+homebrew_taps:
+  - homebrew/core
+  - homebrew/cask
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - 1password
+  - backblaze
+  - chromedriver
+  - docker
+  - firefox
+  - google-chrome
+  - iterm2
+  - postico
+  - rectangle
+
+mas_installed_apps: []
+mas_email: "{{ apple_id_user }}"  # inside ansible vault
+mas_password: "{{ apple_id_password }}"  # inside ansible vault
+
+ssh_keys_dir: "{{ ansible_env.HOME}}/.ssh"
+ssh_keypair:
+  email: "{{ ssh_key_email }}"  # inside ansible vault
+  passphrase: "{{ ssh_key_passphrase }}"  # inside ansible vault
+  path: "{{ ssh_keys_dir }}/id_rsa"
+  type: ed25519
+
+git_name: phouse512
+git_email: "{{ github_email }}"  # inside ansible vault
+git_signing_key: "{{ gpg_keyid }}"  # inside ansible vault
+

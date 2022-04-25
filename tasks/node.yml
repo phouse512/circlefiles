@@ -1,0 +1,9 @@
+---
+- name: enable corepack for yarn
+  shell: |
+    source ~/.nvm/nvm.sh
+    nvm use lts/gallium
+    corepack enable
+  args:
+    executable: /bin/bash
+

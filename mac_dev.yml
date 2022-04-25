@@ -1,0 +1,45 @@
+---
+- hosts: development
+
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/opt/homebrew/bin"
+
+  vars_files:
+    - vars.yml
+    - mac_dev.config.yml
+
+  pre_tasks:
+    - import_tasks: tasks/organization.yml
+      tags: ['organization']
+
+  roles:
+    - role: elliotweiser.osx-command-line-tools
+    - role: geerlingguy.mac.homebrew
+      tags: ['homebrew']
+    - role: geerlingguy.dotfiles
+      when: configure_dotfiles
+      tags: ['dotfiles']
+    - role: geerlingguy.mac.mas
+      when: mas_installed_apps or mas_installed_app_ids
+      tags: ['mas']
+    - role: geerlingguy.mac.dock
+      when: configure_dock
+      tags: ['dock']
+
+  tasks:
+    - name: change shell to bash
+      become: yes
+      command: chsh -s /bin/bash
+    - import_tasks: tasks/mac.yml
+      tags: ['mac']
+    - import_tasks: tasks/neovim.yml
+      tags: ['neovim']
+    - import_tasks: tasks/aws.yml
+      tags: ['aws']
+    - import_tasks: tasks/auth.yml
+      tags: ['auth']
+    - import_tasks: tasks/node.yml
+      tags: ['node']
+    - import_tasks: tasks/amper.yml
+      tags: ['amper']
+

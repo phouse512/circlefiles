@@ -1,0 +1,10 @@
+---
+roles:
+  - name: elliotweiser.osx-command-line-tools
+  - name: geerlingguy.dotfiles
+
+collections:
+  - name: community.crypto
+  - name: community.general
+  - name: geerlingguy.mac
+

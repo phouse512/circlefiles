@@ -1,0 +1,12 @@
+---
+- name: create directories for initial setup
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - ~/.config/nvim
+    - ~/.nvm
+    - ~/.ssh
+    - ~/os
+    - ~/amper
+
