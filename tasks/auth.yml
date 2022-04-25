@@ -6,7 +6,6 @@
     passphrase: "{{ ssh_keypair.passphrase }}"
     path: "{{ ssh_keypair.path }}"
     regenerate: never
-    size: "{{ ssh_keypair.bits }}"
     state: present
     type: "{{ ssh_keypair.type }}"
 
