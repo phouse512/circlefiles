@@ -74,6 +74,12 @@ alias gdeletemerged="git branch --merged | egrep -v \"(^\*|master|dev)\" | xargs
 
 export GPG_TTY=$(tty)
 
+# vim shortcuts
+alias oldvim="\vim"
+alias vim="nvim"
+alias vi="nvim"
+export EDITOR=nvim  # might be overkill?
+
 # alias starting jupyter
 alias js='jupyter notebook --NotebookApp.iopub_data_rate_limit=10000000000'
 
@@ -96,6 +102,16 @@ export GOBIN=$GOPATH/bin
 
 # adding psql/other postgres tools to path from Postgres.app install
 export PATH=/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH
+
+# add pyenv shims if installed with brew
+if brew list pyenv &>/dev/null; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+else
+    echo 'pyenv not installed with brew, not loading bashrc shims'
+fi
 
 # add CMake to build path
 export PATH=/Applications/CMake.app/Contents/bin:$PATH
