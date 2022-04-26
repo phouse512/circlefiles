@@ -103,6 +103,12 @@ export GOBIN=$GOPATH/bin
 # adding psql/other postgres tools to path from Postgres.app install
 export PATH=/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH
 
+# add CMake to build path
+export PATH=/Applications/CMake.app/Contents/bin:$PATH
+
+# add homebrew bin to path
+export PATH=/opt/homebrew/bin:$PATH
+
 # add pyenv shims if installed with brew
 if brew list pyenv &>/dev/null; then
     export PYENV_ROOT="$HOME/.pyenv"
@@ -112,12 +118,6 @@ if brew list pyenv &>/dev/null; then
 else
     echo 'pyenv not installed with brew, not loading bashrc shims'
 fi
-
-# add CMake to build path
-export PATH=/Applications/CMake.app/Contents/bin:$PATH
-
-# add homebrew bin to path
-export PATH=/opt/homebrew/bin:$PATH
 
 # add alias for x86 homebrew install
 alias brew86="arch -x86_64 /usr/local/bin/brew"
