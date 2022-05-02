@@ -5,11 +5,15 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdTree'
 Plug 'godlygeek/tabular'
 
+" neovim specific
+Plug 'f-person/git-blame.nvim'
+
 Plug 'flazz/vim-colorschemes'
 Plug 'tomlion/vim-solidity'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
 
 call plug#end()
 
