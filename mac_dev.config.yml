@@ -10,6 +10,7 @@ dotfiles_repo_version: prod
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/os/circlefiles
 dotfiles_files:
+  - .ackrc
   - .bash_profile
   - .bashrc
   - .gitignore

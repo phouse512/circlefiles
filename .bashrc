@@ -103,6 +103,9 @@ export GOBIN=$GOPATH/bin
 # adding psql/other postgres tools to path from Postgres.app install
 export PATH=/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH
 
+# postgres 12 install
+export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
+
 # add CMake to build path
 export PATH=/Applications/CMake.app/Contents/bin:$PATH
 
@@ -152,3 +155,5 @@ fi
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [ -f /Users/philiphouse/.nvm/versions/node/v8.9.4/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /Users/philiphouse/.nvm/versions/node/v8.9.4/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash
+
+export PATH="/Users/philiphouse/.deta/bin:$PATH"
