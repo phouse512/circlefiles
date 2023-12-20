@@ -54,27 +54,35 @@ dockitems_persist:
 
 homebrew_installed_packages:
   # - ansible # installed via pip
+  - ack
   - dockutil
+  - fd
   - git
   - git-crypt
   - gpg
+  - hashicorp/tap/packer
+  - hashicorp/tap/terraform
   - mas
   - neovim
   - node
   - nvm
   - openssh
+  - postgresql
   - pyenv
+  - redis
+  - sd
   - ultralist
+  - fnm
 
 homebrew_taps:
-  - homebrew/core
-  - homebrew/cask
+  - hashicorp/tap
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - 1password
   - backblaze
   - chromedriver
+  - discord
   - docker
   - firefox
   - google-chrome
